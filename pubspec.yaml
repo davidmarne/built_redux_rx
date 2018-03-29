@@ -1,5 +1,5 @@
 name: built_redux_rx
-version: 0.1.0
+version: 0.1.1
 description:
    epics for built_redux
 authors:
@@ -7,13 +7,13 @@ authors:
 homepage: https://github.com/davidmarne/built_redux_rx
 dependencies:
   built_redux: ">=6.1.1 <8.0.0"
-  built_value: ^4.1.0
-  rxdart: ^0.14.0+2
+  built_value: ">=4.1.0 <6.0.0"
+  rxdart: ^0.16.0
 
 dev_dependencies:
-  built_collection: "^1.0.0"
-  build_runner: ^0.4.0
-  built_value_generator: ^4.1.0
+  built_collection: "^3.0.0"
+  build_runner: ^0.6.0
+  built_value_generator: ^5.0.0
   source_gen: '^0.7.0'
   test: ^0.12.0
 
