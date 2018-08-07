@@ -7,10 +7,10 @@ import 'package:rxdart/rxdart.dart';
 
 import 'test_counter.dart';
 
-main() {
+void main() {
   group('redux', () {
     Store<Counter, CounterBuilder, CounterActions> store;
-    setup(middleware) {
+    setup(Middleware<Counter, CounterBuilder, CounterActions> middleware) {
       var actions = new CounterActions();
       var defaultValue = new Counter();
 
@@ -64,23 +64,23 @@ main() {
   });
 }
 
-Observable asyncIncrement(Observable<Action<dynamic>> stream,
+Observable<void> asyncIncrement(Observable<Action<dynamic>> stream,
         MiddlewareApi<Counter, CounterBuilder, CounterActions> mwApi) =>
     stream
         .where((a) => a.name == CounterActionsNames.incrementAsync.name)
         .map((a) => a as Action<int>)
-        .asyncMap(
-          (action) => new Future.delayed(new Duration(milliseconds: 1))
+        .asyncMap<void>(
+          (action) => new Future<void>.delayed(new Duration(milliseconds: 1))
               .then((_) => mwApi.actions.increment(action.payload)),
         );
 
-Observable asyncDecrement(Observable<Action<dynamic>> stream,
+Observable<void> asyncDecrement(Observable<Action<dynamic>> stream,
         MiddlewareApi<Counter, CounterBuilder, CounterActions> mwApi) =>
     stream
         .where((a) => a.name == CounterActionsNames.decrementAsync.name)
         .map((a) => a as Action<int>)
         .asyncMap(
-          (action) => new Future.delayed(new Duration(milliseconds: 1))
+          (action) => new Future<void>.delayed(new Duration(milliseconds: 1))
               .then((_) => mwApi.actions.decrement(action.payload)),
         );
 
@@ -90,16 +90,16 @@ Iterable<Epic<Counter, CounterBuilder, CounterActions>> createEpicBuilder() =>
           ..add(CounterActionsNames.decrementAsync, asyncDecrementBuilder))
         .build();
 
-Observable asyncIncrementBuilder(Observable<Action<int>> stream,
+Observable<void> asyncIncrementBuilder(Observable<Action<int>> stream,
         MiddlewareApi<Counter, CounterBuilder, CounterActions> mwApi) =>
     stream.asyncMap(
-      (action) => new Future.delayed(new Duration(milliseconds: 1))
+      (action) => new Future<void>.delayed(new Duration(milliseconds: 1))
           .then((_) => mwApi.actions.increment(action.payload)),
     );
 
-Observable asyncDecrementBuilder(Observable<Action<int>> stream,
+Observable<void> asyncDecrementBuilder(Observable<Action<int>> stream,
         MiddlewareApi<Counter, CounterBuilder, CounterActions> mwApi) =>
     stream.asyncMap(
-      (action) => new Future.delayed(new Duration(milliseconds: 1))
+      (action) => new Future<void>.delayed(new Duration(milliseconds: 1))
           .then((_) => mwApi.actions.decrement(action.payload)),
     );

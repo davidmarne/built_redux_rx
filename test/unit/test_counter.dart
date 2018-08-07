@@ -12,14 +12,14 @@ abstract class CounterActions extends ReduxActions {
   ActionDispatcher<int> decrementAsync;
 
   CounterActions._();
-  factory CounterActions() => new _$CounterActions();
+  factory CounterActions() => _$CounterActions();
 }
 
 Reducer<Counter, CounterBuilder, dynamic> createReducer() =>
-    (new ReducerBuilder<Counter, CounterBuilder>()
-          ..add(
+    (ReducerBuilder<Counter, CounterBuilder>()
+          ..add<int>(
               CounterActionsNames.increment, (s, a, b) => b.count += a.payload)
-          ..add(
+          ..add<int>(
               CounterActionsNames.decrement, (s, a, b) => b.count -= a.payload))
         .build();
 
@@ -29,5 +29,5 @@ abstract class Counter implements Built<Counter, CounterBuilder> {
 
   // Built value constructor
   Counter._();
-  factory Counter() => new _$Counter._(count: 1);
+  factory Counter() => _$Counter._(count: 1);
 }

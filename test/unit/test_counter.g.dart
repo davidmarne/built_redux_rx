@@ -3,13 +3,55 @@
 part of test_counter;
 
 // **************************************************************************
-// Generator: BuiltValueGenerator
+// BuiltReduxGenerator
+// **************************************************************************
+
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: annotate_overrides
+
+class _$CounterActions extends CounterActions {
+  factory _$CounterActions() => new _$CounterActions._();
+  _$CounterActions._() : super._();
+
+  final ActionDispatcher<int> increment =
+      new ActionDispatcher<int>('CounterActions-increment');
+  final ActionDispatcher<int> decrement =
+      new ActionDispatcher<int>('CounterActions-decrement');
+  final ActionDispatcher<int> incrementAsync =
+      new ActionDispatcher<int>('CounterActions-incrementAsync');
+  final ActionDispatcher<int> decrementAsync =
+      new ActionDispatcher<int>('CounterActions-decrementAsync');
+
+  @override
+  void setDispatcher(Dispatcher dispatcher) {
+    increment.setDispatcher(dispatcher);
+    decrement.setDispatcher(dispatcher);
+    incrementAsync.setDispatcher(dispatcher);
+    decrementAsync.setDispatcher(dispatcher);
+  }
+}
+
+class CounterActionsNames {
+  static final ActionName<int> increment =
+      new ActionName<int>('CounterActions-increment');
+  static final ActionName<int> decrement =
+      new ActionName<int>('CounterActions-decrement');
+  static final ActionName<int> incrementAsync =
+      new ActionName<int>('CounterActions-incrementAsync');
+  static final ActionName<int> decrementAsync =
+      new ActionName<int>('CounterActions-decrementAsync');
+}
+
+// **************************************************************************
+// BuiltValueGenerator
 // **************************************************************************
 
 // ignore_for_file: always_put_control_body_on_new_line
 // ignore_for_file: annotate_overrides
 // ignore_for_file: avoid_annotating_with_dynamic
+// ignore_for_file: avoid_catches_without_on_clauses
 // ignore_for_file: avoid_returning_this
+// ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: omit_local_variable_types
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: sort_constructors_first
@@ -22,7 +64,7 @@ class _$Counter extends Counter {
       (new CounterBuilder()..update(updates)).build();
 
   _$Counter._({this.count}) : super._() {
-    if (count == null) throw new ArgumentError.notNull('count');
+    if (count == null) throw new BuiltValueNullFieldError('Counter', 'count');
   }
 
   @override
@@ -85,44 +127,4 @@ class CounterBuilder implements Builder<Counter, CounterBuilder> {
     replace(_$result);
     return _$result;
   }
-}
-
-// **************************************************************************
-// Generator: BuiltReduxGenerator
-// **************************************************************************
-
-class _$CounterActions extends CounterActions {
-  final ActionDispatcher<int> decrementAsync =
-      new ActionDispatcher<int>('CounterActions-decrementAsync');
-
-  final ActionDispatcher<int> incrementAsync =
-      new ActionDispatcher<int>('CounterActions-incrementAsync');
-
-  final ActionDispatcher<int> decrement =
-      new ActionDispatcher<int>('CounterActions-decrement');
-
-  final ActionDispatcher<int> increment =
-      new ActionDispatcher<int>('CounterActions-increment');
-  factory _$CounterActions() => new _$CounterActions._();
-
-  _$CounterActions._() : super._();
-
-  @override
-  void setDispatcher(Dispatcher dispatcher) {
-    decrementAsync.setDispatcher(dispatcher);
-    incrementAsync.setDispatcher(dispatcher);
-    decrement.setDispatcher(dispatcher);
-    increment.setDispatcher(dispatcher);
-  }
-}
-
-class CounterActionsNames {
-  static final ActionName<int> decrementAsync =
-      new ActionName<int>('CounterActions-decrementAsync');
-  static final ActionName<int> incrementAsync =
-      new ActionName<int>('CounterActions-incrementAsync');
-  static final ActionName<int> decrement =
-      new ActionName<int>('CounterActions-decrement');
-  static final ActionName<int> increment =
-      new ActionName<int>('CounterActions-increment');
 }
